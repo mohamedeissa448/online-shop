@@ -1,0 +1,44 @@
+<%- include('./parts/header.ejs') %> <%- include('./parts/navbar.ejs') %>
+
+<div class="container">
+  <form action="/" method="GET">
+    <select class="custom-select" name="category" id="inputGroupSelect01">
+      <option disabled>Choose...</option>
+      <option value="All">All</option>
+      <option value="Clothes">Clothes</option>
+      <option value="Phones">Phones</option>
+      <option value="Computers">Computers</option>
+    </select>
+    <input type="submit" value="Filter" class="btn btn-primary" />
+  </form>
+  <% if(products.length !== 0){ %>
+  <div class="row">
+    <% products.forEach(product=>{ %>
+    <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card m-3" style="width: 18rem;">
+        <img
+          src="<%= product.image%>"
+          class="card-img-top"
+          alt="product"
+          style="max-height: 170px;"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="/product/<%= product._id%>"><%= product.name%></a>
+            <p>Price: <%= product.price%> $</p>
+          </h5>
+          <form action="/cart" method="POST">
+            <input type="number" name="amount" class="form-control" />
+            <input type="submit" value="Add to cart" class="btn btn-primary" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <% }) %>
+  </div>
+  <% }else{ %>
+  <div class="alert alert-danger">There is no products</div>
+  <% } %>
+</div>
+<%-include('./parts/footer.ejs') %>
