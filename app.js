@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth.route");
 //sessions stored on DB
 const session = require("express-session");
 const SessionStore = require("connect-mongodb-session")(session);
+var flash = require("connect-flash");
 //set view engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -32,6 +33,7 @@ app.use(
     saveUninitialized: false
   })
 );
+app.use(flash());
 //serve routes
 app.use("/", homeRouter);
 app.use("/", authRouter);
