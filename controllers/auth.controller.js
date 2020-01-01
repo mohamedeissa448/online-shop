@@ -1,22 +1,49 @@
 const userModel = require("../models/user.model");
+const { validationResult } = require("express-validator");
+
 exports.getSignUp = (req, res, next) => {
-  res.render("signup");
+  res.render("signup", {
+    validationErrors: req.flash("validationErrors")
+  });
 };
 
 exports.postSignUp = (req, res, next) => {
+  //if there is any validation errors ,we redirect to same page.
+  const validationErrors = validationResult(req).errors;
+  if (validationErrors.length !== 0) {
+    req.flash("validationErrors", validationErrors);
+    res.redirect("/signup");
+    return;
+  }
+
   userModel
     .createNewUser(req.body.username, req.body.email, req.body.password)
     .then(() => {
       res.redirect("/login");
     })
-    .catch(err => res.redirect("/signup"));
+    .catch(err => {
+      req.flash("validationErrors", err);
+      res.redirect("/signup");
+    });
 };
 
 exports.getLogIn = (req, res, next) => {
-  res.render("login");
+  const authError = req.flash("authError")[0];
+  const validationErrors = req.flash("validationErrors");
+  res.render("login", {
+    authError,
+    validationErrors
+  });
 };
 
 exports.postLogIn = (req, res, next) => {
+  //if there is any validation errors ,we redirect to same page.
+  const validationErrors = validationResult(req).errors;
+  if (validationErrors.length !== 0) {
+    req.flash("validationErrors", validationErrors);
+    res.redirect("/login");
+    return;
+  }
   userModel
     .getUser(req.body.email, req.body.password)
     .then(userId => {
@@ -25,7 +52,7 @@ exports.postLogIn = (req, res, next) => {
       res.redirect("/");
     })
     .catch(err => {
-      console.log(err);
+      req.flash("authError", err);
       res.redirect("/login");
     });
 };
@@ -33,7 +60,7 @@ exports.postLogIn = (req, res, next) => {
 exports.LogOut = (req, res, next) => {
   //destrou session on DB
   req.session.destroy(() => {
-    //destrou session on client side
+    //destroy session on client side
     res.clearCookie("connect.sid");
     res.redirect("/");
   });
