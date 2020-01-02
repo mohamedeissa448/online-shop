@@ -1,9 +1,9 @@
 const userModel = require("../models/user.model");
 const { validationResult } = require("express-validator");
-
 exports.getSignUp = (req, res, next) => {
   res.render("signup", {
-    validationErrors: req.flash("validationErrors")
+    validationErrors: req.flash("validationErrors"),
+    isUser: false
   });
 };
 
@@ -32,7 +32,8 @@ exports.getLogIn = (req, res, next) => {
   const validationErrors = req.flash("validationErrors");
   res.render("login", {
     authError,
-    validationErrors
+    validationErrors,
+    isUser: false
   });
 };
 

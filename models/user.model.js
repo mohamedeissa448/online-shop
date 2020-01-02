@@ -39,7 +39,6 @@ exports.createNewUser = (username, email, password) => {
                 resolve(user);
               })
               .catch(err => {
-                console.log("\nxxx", err, "\n");
                 mongoose.disconnect();
                 reject(err);
               });
@@ -68,12 +67,12 @@ exports.getUser = (email, password) => {
                   resolve(user._id);
                 } else {
                   mongoose.disconnect();
-                  reject(new Error("Password incorrect|"));
+                  reject("Password incorrect!");
                 }
               });
             } else {
               mongoose.disconnect();
-              reject(new Error("There is no user matching this email"));
+              reject("There is no user matching this email");
             }
           })
           .catch(err => {

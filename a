@@ -1,0 +1,59 @@
+[33mcommit 7002abebfbafc0284729ba7096d788cd06fcc636[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:55:14 2020 +0200
+
+    adding configuration file
+
+[33mcommit c12141da2c5761b018e65b6dce708ab394d2434d[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:54:43 2020 +0200
+
+    adding all views
+
+[33mcommit ab5259d29fc378a9623737dec7a769eb0a99e5f4[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:54:09 2020 +0200
+
+    adding public static images
+
+[33mcommit 6538699a4983cb6aa87b16b8ab6d49a100b9cc15[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:53:45 2020 +0200
+
+    adding public static folder
+
+[33mcommit edb00f823b57e550e77c3aacfb57658e13542a72[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:53:07 2020 +0200
+
+    adding product and authentication controllers
+
+[33mcommit 48247e421aeae7954b2e3288b3ad549b45f18a29[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:51:02 2020 +0200
+
+    adding user model
+
+[33mcommit 5a160e1c478fcc1fc1d7268c40a5bcc2355c9b79[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:50:06 2020 +0200
+
+    adding products model
+
+[33mcommit 213cf70623187604c1af97eb65dd0e8e56841c4c[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:48:48 2020 +0200
+
+    adding home controller
+
+[33mcommit 96c23ff1a8a86148b4b91eecb93c2ac2b9437e24[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:47:13 2020 +0200
+
+    adding home router
+
+[33mcommit 3208592d1d382f7a6b4e2e325107c374fa8fc011[m
+Author: mohamedeissa448 <mohamedeissa448@gmail.com>
+Date:   Wed Jan 1 19:41:43 2020 +0200
+
+    develop server file

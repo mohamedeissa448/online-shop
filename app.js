@@ -4,6 +4,8 @@ const app = express();
 const homeRouter = require("./routes/home.route");
 const productRouter = require("./routes/product.route");
 const authRouter = require("./routes/auth.route");
+const cartRouter = require("./routes/cart.route");
+
 //sessions stored on DB
 const session = require("express-session");
 const SessionStore = require("connect-mongodb-session")(session);
@@ -38,15 +40,13 @@ app.use(flash());
 app.use("/", homeRouter);
 app.use("/", authRouter);
 app.use("/product", productRouter);
-
+app.use("/cart", cartRouter);
 app.use((req, res, next) => {
-  console.log("hhh");
   const err = new Error("Page not found");
   err.status = 404;
   next(err);
 });
 app.use((err, req, res, next) => {
-  console.log("ff");
   res.status(err.status || 500).send(err.status + " " + err.message);
 });
 const PORT = process.env.PORT || 3000;

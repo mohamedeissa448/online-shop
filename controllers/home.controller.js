@@ -5,16 +5,21 @@ exports.getHome = (req, res, next) => {
       .getProductsByFilter(req.query.category)
       .then(products => {
         res.render("index", {
-          products
+          products,
+          isUser: req.session.userId,
+          validationErrors: req.flash("validationErrors")
         });
       })
       .catch(err => next(err));
   } else {
+    console.log("hhhhhhhhhhhh", req.flash("validationErrors")[0]);
     productsModel
       .getAllProducts()
       .then(products => {
         res.render("index", {
-          products
+          validationError: req.flash("validationErrors")[0],
+          products,
+          isUser: req.session.userId
         });
       })
       .catch(err => next(err));
