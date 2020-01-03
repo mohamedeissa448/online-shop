@@ -31,21 +31,44 @@ const cartSchema = mongoose.Schema({
 });
 const Cart = mongoose.model("cart", cartSchema);
 exports.addNewItem = data => {
+  //adding new item if  it doesnot exist,else update it by incrementing amount.
   return new Promise((resolve, reject) => {
-    mongoose
-      .connect(DB_URL, err => {
-        if (err) return reject(err);
-        const item = new Cart(data);
-        return item.save();
-      })
-      .then(() => {
-        mongoose.disconnect();
-        resolve();
-      })
-      .catch(err => {
-        mongoose.disconnect();
-        reject(err);
-      });
+    mongoose.connect(DB_URL, err => {
+      if (err) return reject(err);
+      const { productId } = data;
+      Cart.findOne({ productId })
+        .then(doc => {
+          if (doc) {
+            //update amount and time stamp in document
+            Cart.findOneAndUpdate(
+              { productId },
+              { $inc: { amount: data.amount }, timestamp: Date.now() },
+              {
+                new: true,
+                upsert: true // Make this update into an upsert
+              }
+            )
+              .then(document => {
+                mongoose.disconnect();
+                resolve();
+              })
+              .catch(err => {
+                mongoose.disconnect();
+                reject(err);
+              });
+          } else {
+            //create new cart
+            const cart = new Cart(data);
+            cart
+              .save()
+              .then(cart => {
+                resolve();
+              })
+              .catch(err => next(err));
+          }
+        })
+        .catch(err => next(err));
+    });
   });
 };
 

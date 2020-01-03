@@ -9,6 +9,7 @@ exports.getProduct = (req, res, next) => {
       res.render("product", {
         product,
         isUser: true,
+        isAdmin: req.session.isAdmin,
         validationError: req.flash("validationErrors")[0]
       });
     })
@@ -22,6 +23,7 @@ exports.getFirstProduct = (req, res, next) => {
       res.render("product", {
         product,
         isUser: true,
+        isAdmin: req.session.isAdmin,
         validationError: req.flash("validationErrors")[0]
       });
     })

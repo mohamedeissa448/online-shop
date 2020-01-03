@@ -5,7 +5,7 @@ const homeRouter = require("./routes/home.route");
 const productRouter = require("./routes/product.route");
 const authRouter = require("./routes/auth.route");
 const cartRouter = require("./routes/cart.route");
-
+const adminRouter = require("./routes/admin.route");
 //sessions stored on DB
 const session = require("express-session");
 const SessionStore = require("connect-mongodb-session")(session);
@@ -41,6 +41,8 @@ app.use("/", homeRouter);
 app.use("/", authRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
+app.use("/admin", adminRouter);
+
 app.use((req, res, next) => {
   const err = new Error("Page not found");
   err.status = 404;

@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
 });
 userSchema.plugin(uniqueValidator);
@@ -64,7 +68,7 @@ exports.getUser = (email, password) => {
                 }
                 if (res) {
                   mongoose.disconnect();
-                  resolve(user._id);
+                  resolve({ id: user._id, isAdmin: user.isAdmin });
                 } else {
                   mongoose.disconnect();
                   reject("Password incorrect!");

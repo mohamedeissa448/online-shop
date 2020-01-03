@@ -3,7 +3,8 @@ const { validationResult } = require("express-validator");
 exports.getSignUp = (req, res, next) => {
   res.render("signup", {
     validationErrors: req.flash("validationErrors"),
-    isUser: false
+    isUser: false,
+    isAdmin: false
   });
 };
 
@@ -33,7 +34,8 @@ exports.getLogIn = (req, res, next) => {
   res.render("login", {
     authError,
     validationErrors,
-    isUser: false
+    isUser: false,
+    isAdmin: false
   });
 };
 
@@ -47,9 +49,10 @@ exports.postLogIn = (req, res, next) => {
   }
   userModel
     .getUser(req.body.email, req.body.password)
-    .then(userId => {
-      console.log(req.session);
-      req.session.userId = userId;
+    .then(result => {
+      req.session.userId = result.id;
+      req.session.isAdmin = result.isAdmin;
+
       res.redirect("/");
     })
     .catch(err => {

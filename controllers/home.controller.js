@@ -7,19 +7,20 @@ exports.getHome = (req, res, next) => {
         res.render("index", {
           products,
           isUser: req.session.userId,
-          validationErrors: req.flash("validationErrors")
+          isAdmin: req.session.isAdmin,
+          validationError: req.flash("validationErrors")[0]
         });
       })
       .catch(err => next(err));
   } else {
-    console.log("hhhhhhhhhhhh", req.flash("validationErrors")[0]);
     productsModel
       .getAllProducts()
       .then(products => {
         res.render("index", {
           validationError: req.flash("validationErrors")[0],
           products,
-          isUser: req.session.userId
+          isUser: req.session.userId,
+          isAdmin: req.session.isAdmin
         });
       })
       .catch(err => next(err));

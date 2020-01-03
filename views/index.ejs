@@ -10,8 +10,8 @@
     </select>
     <input type="submit" value="Filter" class="btn btn-primary" />
   </form>
-  <%= validationError %> <% if(validationError) { %>
-  <p class="alert alert-danger">cc<% validationError.msg %></p>
+  <% if(validationError) { %>
+  <p class="alert alert-danger"><% validationError.msg %></p>
   <% } %> <% if(products.length !== 0){ %>
   <div class="row">
     <% products.forEach(product=>{ %>

@@ -1,0 +1,61 @@
+<%- include('./parts/header')%> <%- include('./parts/navbar')%>
+<div class="container text-center">
+  <h3>Add product</h3>
+  <form action="/admin/add" method="Post" enctype="multipart/form-data">
+    <input type="text" class="form-control" name="name" placeholder="name" />
+    <% let nameError=validationErrors.find(err => err.param=== 'name') %> <%
+    if(nameError){%>
+    <p class="alert alert-danger">
+      <%= nameError.msg%> <% } %>
+      <br />
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        placeholder="price"
+      />
+      <% let priceError=validationErrors.find(err => err.param === 'price') %>
+      <% if(priceError){%>
+    </p>
+
+    <p class="alert alert-danger">
+      <%= priceError.msg %> <% } %>
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        name="description"
+        placeholder="description"
+      />
+      <% let descriptionError=validationErrors.find(err => err.param===
+      'description') %> <% if(descriptionError){%>
+    </p>
+
+    <p class="alert alert-danger">
+      <%= descriptionError.msg %> <% } %>
+      <br />
+      <select class="custom-select custom-select-sm" name="category">
+        <option selected>select Category</option>
+        <option value="All">All</option>
+        <option value="Clothes">Clothes</option>
+        <option value="Phones">Phones</option>
+        <option value="Computers">Computers</option>
+      </select>
+    </p>
+
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Upload file </label>
+      <input
+        type="file"
+        class="form-control-file"
+        name="file"
+        id="exampleFormControlFile1"
+      />
+
+      <br />
+    </div>
+    <input type="submit" class="btn btn-primary" val="Add Product" />
+  </form>
+</div>
+
+<%- include('./parts/footer')%>
