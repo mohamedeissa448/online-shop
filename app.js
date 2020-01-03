@@ -32,7 +32,8 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     },
     store,
-    saveUninitialized: false
+    saveUninitialized: false,
+    resave: false
   })
 );
 app.use(flash());
@@ -49,7 +50,12 @@ app.use((req, res, next) => {
   next(err);
 });
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).send(err.status + " " + err.message);
+  res.status(err.status || 500);
+  res.render("error.ejs", {
+    isUser: req.session.userId,
+    isAdmin: req.session.isAdmin,
+    errorMessage: err.message || "Something went wrong,Please try again later."
+  });
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

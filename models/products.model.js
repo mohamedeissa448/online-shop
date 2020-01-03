@@ -111,3 +111,27 @@ exports.getFirstProductInDB = () => {
       });
   });
 };
+
+exports.addNewProduct = data => {
+  return new Promise((resolve, reject) => {
+    mongoose
+      .connect(DB_URL)
+      .then(() => {
+        const product = new Product(data);
+        product
+          .save()
+          .then(product => {
+            mongoose.disconnect();
+            resolve();
+          })
+          .catch(err => {
+            mongoose.disconnect();
+            reject(err);
+          });
+      })
+      .catch(err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+  });
+};
