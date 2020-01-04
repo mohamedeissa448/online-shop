@@ -54,7 +54,8 @@ app.use((err, req, res, next) => {
   res.render("error.ejs", {
     isUser: req.session.userId,
     isAdmin: req.session.isAdmin,
-    errorMessage: err.message || "Something went wrong,Please try again later."
+    errorMessage: err.message || "Something went wrong,Please try again later.",
+    pageTitle: "error"
   });
 });
 const PORT = process.env.PORT || 3000;

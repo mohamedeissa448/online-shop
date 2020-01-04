@@ -10,7 +10,8 @@ exports.getProduct = (req, res, next) => {
         product,
         isUser: true,
         isAdmin: req.session.isAdmin,
-        validationError: req.flash("validationErrors")[0]
+        validationError: req.flash("validationErrors")[0],
+        pageTitle: "Product"
       });
     })
     .catch(err => next(err));
@@ -24,7 +25,8 @@ exports.getFirstProduct = (req, res, next) => {
         product,
         isUser: true,
         isAdmin: req.session.isAdmin,
-        validationError: req.flash("validationErrors")[0]
+        validationError: req.flash("validationErrors")[0],
+        pageTitle: "Product"
       });
     })
     .catch(err => next(err));

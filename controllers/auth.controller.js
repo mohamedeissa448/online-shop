@@ -4,7 +4,8 @@ exports.getSignUp = (req, res, next) => {
   res.render("signup", {
     validationErrors: req.flash("validationErrors"),
     isUser: false,
-    isAdmin: false
+    isAdmin: false,
+    pageTitle: "signup"
   });
 };
 
@@ -35,7 +36,8 @@ exports.getLogIn = (req, res, next) => {
     authError,
     validationErrors,
     isUser: false,
-    isAdmin: false
+    isAdmin: false,
+    pageTitle: "login"
   });
 };
 

@@ -8,7 +8,8 @@ exports.getHome = (req, res, next) => {
           products,
           isUser: req.session.userId,
           isAdmin: req.session.isAdmin,
-          validationError: req.flash("validationErrors")[0]
+          validationError: req.flash("validationErrors")[0],
+          pageTitle: "Home"
         });
       })
       .catch(err => next(err));
@@ -20,7 +21,8 @@ exports.getHome = (req, res, next) => {
           validationError: req.flash("validationErrors")[0],
           products,
           isUser: req.session.userId,
-          isAdmin: req.session.isAdmin
+          isAdmin: req.session.isAdmin,
+          pageTitle: "Home"
         });
       })
       .catch(err => next(err));

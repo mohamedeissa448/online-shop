@@ -33,7 +33,8 @@ exports.getCart = (req, res, next) => {
         items: items,
         isUser: true,
         isAdmin: req.session.isAdmin,
-        validationError: req.flash("validationErrors")[0]
+        validationError: req.flash("validationErrors")[0],
+        pageTitle: "cart"
       });
     })
     .catch(err => next(err));
